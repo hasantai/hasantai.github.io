@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pedestrian Automatic Emergency Braking prototype | Hasan Tai</title><meta name="description" content="ESP32-CAM video and YOLOv8 person detection grade pedestrians as CLEAR, CAUTION, or BRAKE."><meta property="og:title" content="Pedestrian Automatic Emergency Braking prototype | Hasan Tai"><meta property="og:description" content="ESP32-CAM video and YOLOv8 person detection grade pedestrians as CLEAR, CAUTION, or BRAKE."><meta property="og:type" content="website"><meta name="theme-color" content="#1f2123">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css"></head><body>
+<div class="top"><div class="w"><nav aria-label="Site"><a href="../index.html">Home</a><a href="../projects/index.html" aria-current="page">Projects</a><a href="../experience.html">Experience</a><a href="../certifications.html">Certifications</a><a href="../awards.html">Awards</a><a href="../index.html#contact">Contact</a></nav></div></div>
+<div class="w"><main class="pg"><p class="crumb"><a href="index.html">Projects</a></p>
+<article class="detail"><div><h1 class="pt">Pedestrian Automatic Emergency Braking prototype</h1><p class="meta">ECE 471, Data Communications, Fall 2026</p>
+<p>An ESP32-CAM streams live video over its own Wi-Fi access point to a laptop. A Python application runs a pretrained YOLOv8 model restricted to people, then checks whether each person’s feet sit inside a trapezoidal driving-path polygon and whether the bounding box is tall enough to count as close. The highest alert in each frame passes through a debounce filter that is quick to raise and slow to clear, then appears as a color-coded border with a beep and a CSV log entry.</p>
+<p>Checking only the feet against the path, instead of the whole box, cut false BRAKE alerts for bystanders. The system warns but does not brake, and box height is only a rough distance proxy.</p>
+<table><caption class="cap" style="text-align:left">Measured over 10 trials per scenario</caption><tr><th>Scenario</th><th>Expected</th><th>Correct</th></tr><tr><td>Walk straight toward camera</td><td>BRAKE</td><td>8/10</td></tr><tr><td>Walk past the side</td><td>CAUTION</td><td>6/10</td></tr><tr><td>Stand far away in path</td><td>CAUTION or CLEAR</td><td>7/10</td></tr><tr><td>Empty scene</td><td>CLEAR</td><td>8/10</td></tr></table>
+<ul class="tags"><li>ESP32-CAM</li><li>Python</li><li>YOLOv8</li><li>OpenCV</li></ul></div>
+<div class="shots"><img src="../assets/img/paeb_diagram.webp" alt="PAEB pipeline: ESP32-CAM, Wi-Fi stream, grab frame, YOLO detect, zone and size check, debounce filter, send alert">
+<div class="shots t"><img src="../assets/img/paeb_clear.webp" alt="CLEAR state, green border"><img src="../assets/img/paeb_caution.webp" alt="CAUTION state, blue border"><img src="../assets/img/paeb_brake.webp" alt="BRAKE state, red border"></div>
+<p class="cap">The pipeline loops once per frame. Below it, the CLEAR, CAUTION, and BRAKE states.</p></div></article>
+<p class="back"><a href="index.html">Back to all projects</a></p></main></div>
+<footer class="ft"><div class="w"><a href="mailto:htai6777@gmail.com">Email</a><a href="https://www.linkedin.com/in/hasantai">LinkedIn</a><a href="https://github.com/hasantai">GitHub</a><p>© 2026 Hasan Tai</p></div></footer>
+</body></html>
